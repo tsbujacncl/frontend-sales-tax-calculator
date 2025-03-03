@@ -136,7 +136,7 @@ async function calculateTax() {
     };
 
     try {
-        const response = await fetch("http://https://voteforme-md-sales-tax.onrender.com//calculate-tax", {
+        const response = await fetch("http://https://voteforme-md-sales-tax.onrender.com/calculate-tax", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(requestData)
