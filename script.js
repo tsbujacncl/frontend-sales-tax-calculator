@@ -136,33 +136,34 @@ async function calculateTax() {
     };
 
     try {
-        const response = await fetch("https://voteforme-md-sales-tax.onrender.com/calculate-tax", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(requestData)
-        });
+    const response = await fetch("https://voteforme-md-sales-tax.onrender.com/calculate-tax", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestData)
+    });
 
-        const data = await response.json();
+    const data = await response.json();
 
-        if (!response.ok) {
-            throw new Error(data.error || "Unexpected API error");
-        }
-
-        document.getElementById("results").innerHTML = `
-            <h3>Final Total</h3>
-            <p><strong>Delivery Method:</strong> ${data.deliveryMethod}</p>
-            <p><strong>Tax Rule Applied:</strong> ${data.taxRuleType}</p>
-            <p><strong>Total Before Tax:</strong> $${data.totalPrice}</p>
-            <p><strong>Total Sales Tax:</strong> $${data.totalTax}</p>
-            <p><strong>Final Total (After Tax):</strong> $${data.finalTotal}</p>
-            <h4>Tax Breakdown</h4>
-            <p><strong>State Tax:</strong> $${data.breakdown.stateTax}</p>
-            <p><strong>County Tax:</strong> $${data.breakdown.countyTax}</p>
-            <p><strong>City Tax:</strong> $${data.breakdown.cityTax}</p>
-            <p><strong>Special Tax:</strong> $${data.breakdown.specialTax}</p>
-        `;
-    } catch (error) {
-        console.error("Fetch error:", error);
-        document.getElementById("results").innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+    if (!response.ok) {
+        throw new Error(data.error || "Unexpected API error");
     }
+
+    document.getElementById("results").innerHTML = `
+        <h3>Final Total</h3>
+        <p><strong>Delivery Method:</strong> ${data.deliveryMethod}</p>
+        <p><strong>Tax Rule Applied:</strong> ${data.taxRuleType}</p>
+        <p><strong>Total Before Tax:</strong> $${data.totalPrice}</p>
+        <p><strong>Total Sales Tax:</strong> $${data.totalTax}</p>
+        <p><strong>Final Total (After Tax):</strong> $${data.finalTotal}</p>
+        <h4>Tax Breakdown</h4>
+        <p><strong>State Tax:</strong> $${data.breakdown.stateTax}</p>
+        <p><strong>County Tax:</strong> $${data.breakdown.countyTax}</p>
+        <p><strong>City Tax:</strong> $${data.breakdown.cityTax}</p>
+        <p><strong>Special Tax:</strong> $${data.breakdown.specialTax}</p>
+    `;
+} catch (error) {
+    console.error("Fetch error:", error);
+    document.getElementById("results").innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+}
+
 }
