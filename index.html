@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Tax Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sales Tax Calculator</h1>
+
+        <h2>Seller Information</h2>
+        <div class="input-group">
+            <label for="sellerState">Seller State:</label>
+            <select id="sellerState"></select>
+        </div>
+        <div class="input-group">
+            <label for="sellerZip">Seller ZIP Code:</label>
+            <input type="text" id="sellerZip">
+        </div>
+
+        <h2>Customer Information</h2>
+        <div class="input-group">
+            <label for="buyerName">Customer Name:</label>
+            <input type="text" id="buyerName">
+        </div>
+        <div class="input-group delivery-method">
+            <label for="deliveryMethod">Delivery Method:</label>
+            <select id="deliveryMethod">
+                <option value="" selected disabled>Delivery Type</option>
+                <option value="Collected">Collected</option>
+                <option value="Delivered">Delivered</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="buyerState">Buyer State:</label>
+            <select id="buyerState"></select>
+        </div>
+        <div class="input-group">
+            <label for="buyerZip">Buyer ZIP Code:</label>
+            <input type="text" id="buyerZip">
+        </div>
+
+        <h2>Products</h2>
+        <div id="productList">
+            <div class="product-item">
+                <div class="input-group">
+                    <label>Product Name:</label>
+                    <input type="text" class="productName">
+                </div>
+                <div class="input-group">
+                    <label>Price $:</label>
+                    <input type="number" class="productPrice" min="0" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label>Quantity:</label>
+                    <input type="number" class="productQuantity" min="1">
+                </div>
+                <div class="input-group">
+                    <label>Custom Tax Rate:</label>
+                    <input type="checkbox" class="useCustomTax" onchange="toggleCustomTaxInput(this)">
+                </div>
+                <div class="input-group customTaxGroup" style="display: none;">
+                    <label>Tax Rate (%):</label>
+                    <input type="number" class="customTaxRate" min="0" step="0.01">
+                </div>
+                <button class="removeProduct" onclick="this.parentElement.remove()">Remove</button>
+            </div>
+        </div>
+        <button id="addProduct">+ Add Product</button>
+
+        <button id="calculateBtn">Calculate Tax</button>
+        <div id="results"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
